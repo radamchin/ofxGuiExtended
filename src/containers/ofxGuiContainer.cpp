@@ -497,3 +497,12 @@ vector<std::string> ofxGuiContainer::getClassTypes(){
 	types.push_back(getClassType());
 	return types;
 }
+
+void ofxGuiContainer::setFilename( const std::string name) {
+	filename = name;
+}
+
+std::string ofxGuiContainer::getFilename() {
+	return filename;
+}
+

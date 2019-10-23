@@ -138,7 +138,10 @@ class ofxGuiContainer : public ofxGuiElement {
 		void deactivateAllOtherToggles(ofxGuiToggle* toggle);
 
 		static std::string getClassType();
-
+		
+		void setFilename( const std::string name);
+		std::string getFilename();
+		
 	protected:
 
 		virtual std::vector<std::string> getClassTypes() override;
