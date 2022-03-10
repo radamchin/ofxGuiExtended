@@ -268,7 +268,7 @@ void ofxGuiSlider<DataType>::generateShapes(ofParameter<DataType>* valueReferenc
 
 		ofPoint center = ofPoint(getWidth()/2, getHeight()/2);
 		if(showName){
-			center.y -= getTextHeight(getName());
+			center.y -= getTextHeight(getLabel());
 		}
 		float radius = min(center.x, center.y)-borderWidth;
 		float inner_r = radius / 3;
@@ -314,7 +314,7 @@ void ofxGuiSlider<DataType>::_generateText(std::string valStr){
 		if(horizontal){
 			textMesh.clear();
 			if(showName){
-				textMesh.append(getTextMesh(getName(), ofPoint(textPadding, getHeight() / 2 + 4)));
+				textMesh.append(getTextMesh(getLabel(), ofPoint(textPadding, getHeight() / 2 + 4)));
 			}
 			if(showValue){
 				textMesh.append(getTextMesh(valStr, getShape().getWidth() - textPadding - getTextBoundingBox(valStr,0,0).width, getHeight() / 2 + 4));
@@ -322,7 +322,7 @@ void ofxGuiSlider<DataType>::_generateText(std::string valStr){
 		}else{
 			textMesh.clear();
 			if(showName){
-				string nameStr = getName();
+				string nameStr = getLabel();
 				while(getTextBoundingBox(nameStr, 0, 0).getWidth() + textPadding * 2 > getWidth() && nameStr.length() > 1){
 					nameStr = nameStr.substr(0, nameStr.size() - 1);
 				}
@@ -340,7 +340,7 @@ void ofxGuiSlider<DataType>::_generateText(std::string valStr){
 
 		textMesh.clear();
 		if(showName){
-			textMesh.append(getTextMesh(getName(), textPadding, getShape().height - textPadding));
+			textMesh.append(getTextMesh(getLabel(), textPadding, getShape().height - textPadding));
 		}
 		if(showValue){
 			textMesh.append(getTextMesh(valStr, getShape().width - textPadding - getTextBoundingBox(valStr, 0, 0).width, getShape().height - textPadding));
@@ -447,7 +447,7 @@ std::string ofxGuiSlider<DataType>::getText(){
 	string res = "";
 	if(type == ofxGuiSliderType::STRAIGHT){
 		if(showName){
-			res += getName();
+			res += getLabel();
 		}
 		res += ofToString(value.get(), precision);
 	}
@@ -462,7 +462,7 @@ std::string ofxGuiSlider<unsigned char>::getText(){
 	string res = "";
 	if(type == ofxGuiSliderType::STRAIGHT){
 		if(showName){
-			res += getName();
+			res += getLabel();
 		}
 		res += ofToString((int)value, precision);
 	}

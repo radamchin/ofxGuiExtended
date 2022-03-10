@@ -72,7 +72,7 @@ void ofxGuiToggle::_setConfig(const ofJson &config){
 float ofxGuiToggle::getMinWidth(){
 	float _width = 0;
 	if(showName){
-		_width += ofxGuiElement::getTextWidth(getName());
+		_width += ofxGuiElement::getTextWidth(getLabel());
 	}
 	if(type != ofxGuiToggleType::FULLSIZE){
 		_width += 30;
@@ -82,7 +82,7 @@ float ofxGuiToggle::getMinWidth(){
 
 float ofxGuiToggle::getMinHeight(){
 	if(showName){
-		return ofxGuiElement::getTextHeight(getName());
+		return ofxGuiElement::getTextHeight(getLabel());
 	}
 	return 10;
 }
@@ -204,25 +204,25 @@ void ofxGuiToggle::generateDraw(){
 
 				// create label
 
-				textMesh = getTextMesh(getName(), textPadding + checkboxRect.width, getShape().getHeight() / 2 + 4);
+				textMesh = getTextMesh(getLabel(), textPadding + checkboxRect.width, getShape().getHeight() / 2 + 4);
 				break;
 			}
 			case ofxGuiToggleType::FULLSIZE: {
 
 				// create label
-				float textWidth = ofxGuiElement::getTextWidth(getName());
+				float textWidth = ofxGuiElement::getTextWidth(getLabel());
 				switch(textAlignment){
 					default:
 					case TextAlignment::CENTERED:
 						if(getShape().getCenter().x - textWidth/2 > getShape().x+textPadding){
-							textMesh = getTextMesh(getName(), getWidth()/2 - textWidth/2, getHeight()/ 2 + 4);
+							textMesh = getTextMesh(getLabel(), getWidth()/2 - textWidth/2, getHeight()/ 2 + 4);
 							break;
 						}
 					case TextAlignment::LEFT:
-						textMesh = getTextMesh(getName(), textPadding, getShape().height / 2 + 4);
+						textMesh = getTextMesh(getLabel(), textPadding, getShape().height / 2 + 4);
 						break;
 					case TextAlignment::RIGHT:
-						textMesh = getTextMesh(getName(), getShape().getWidth() - textWidth - textPadding, getShape().height / 2 + 4);
+						textMesh = getTextMesh(getLabel(), getShape().getWidth() - textWidth - textPadding, getShape().height / 2 + 4);
 						break;
 
 				}

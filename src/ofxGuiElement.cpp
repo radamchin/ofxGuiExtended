@@ -104,7 +104,8 @@ void ofxGuiElement::setup(){
 
 	theme = ofxGuiDefaultConfig::get();
 	setTheme();
-
+    
+    _label = "";
 
 	// parameter won't be saved to file
 	parameter.setSerializable(false);
@@ -525,6 +526,15 @@ string ofxGuiElement::getName(){
 
 void ofxGuiElement::setName(const std::string& _name){
 	getParameter().setName(_name);
+}
+
+std::string ofxGuiElement::getLabel() {
+    if(_label.empty()) return getName();
+    return _label;
+}
+
+void ofxGuiElement::setLabel(const std::string& label) {
+    _label = label;
 }
 
 void ofxGuiElement::setTextAlignment(const TextAlignment &textLayout){

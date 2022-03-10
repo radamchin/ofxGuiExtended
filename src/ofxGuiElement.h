@@ -51,9 +51,12 @@ class ofxGuiElement : public DOM::Element {
 		void loadFrom(T & serializer){
 			ofDeserialize(serializer, getParameter());
 		}
-
+    
 		virtual std::string getName();
 		virtual void setName(const std::string& name);
+    
+      virtual std::string getLabel();
+      virtual void setLabel(const std::string& label);
 
 		virtual void setTextAlignment(const TextAlignment& textLayout=TextAlignment::LEFT);
 		virtual void setTextAlignment(const std::string& textLayout);
@@ -196,6 +199,8 @@ class ofxGuiElement : public DOM::Element {
 		ofTexture* backgroundTexture;
 		ofImage backgroundImg;
 		ofRectangle backgroundImgPos, backgroundTexPos;
+    
+        std::string _label;
 
 		bool bRegisteredForMouseEvents;
 
