@@ -1,0 +1,31 @@
+# ignory
+
+*.app
+*.xcuserdatad
+
+# Xcode
+*.plist
+*.xcconfig
+*.xcodeproj
+*.make
+Makefile
+
+**.zip
+
+**.log
+
+*.exp
+*.ilk
+*.lib
+*.dll
+**/obj/Debug
+*.sdf
+*.opensdf
+*.xccheckout
+
+# VS files.
+**.rc
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**/obj/
