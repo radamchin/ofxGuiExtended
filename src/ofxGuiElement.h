@@ -213,6 +213,21 @@ class ofxGuiElement : public DOM::Element {
 		ofParameter<void> parameter;
 
 		bool themeLoading = false;
+    
+    
+        // Utility to fix bug with osx 14 / oF 12 around casting last_write_time return values to long.
+        long getFileTimeAsLong( std::string filePath ) {
+                
+            std::filesystem::file_time_type fileTime = std::filesystem::last_write_time( filePath );
+
+            // Convert file_time_type to seconds since the epoch
+            auto duration = fileTime.time_since_epoch();
+            std::chrono::seconds seconds = std::chrono::duration_cast<std::chrono::seconds>(duration);
+
+            // Convert seconds to a long value
+            long longValue = seconds.count();
+            return longValue;
+        }
 
 };
 

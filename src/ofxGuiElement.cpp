@@ -168,7 +168,8 @@ void ofxGuiElement::loadTheme(const string &filename, bool updateOnFileChange){
 		if(!updateOnThemeChange){
 			updateOnThemeChange = true;
 			themeFilename = filename;
-			themeUpdated = std::filesystem::last_write_time(ofToDataPath(themeFilename));
+			// themeUpdated = (long)std::filesystem::last_write_time(ofToDataPath(themeFilename));
+            themeUpdated = getFileTimeAsLong( ofToDataPath(themeFilename) );
 			ofAddListener(ofEvents().update, this, &ofxGuiElement::watchTheme);
 		}
 	}else{
@@ -184,13 +185,13 @@ void ofxGuiElement::loadTheme(const string &filename, bool updateOnFileChange){
 	}
 }
 
+
 void ofxGuiElement::watchTheme(ofEventArgs &args){
-	std::time_t newthemeUpdated = std::filesystem::last_write_time(ofToDataPath(themeFilename));
+    long newthemeUpdated = getFileTimeAsLong( ofToDataPath(themeFilename) ); // std::filesystem::last_write_time(ofToDataPath(themeFilename));
 	if(newthemeUpdated != themeUpdated){
 		themeUpdated = newthemeUpdated;
 		loadTheme(themeFilename, true);
 	}
-
 }
 
 void ofxGuiElement::_setConfigUsingClassifiers(const ofJson &config, bool recursive){
